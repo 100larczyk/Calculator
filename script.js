@@ -1,38 +1,34 @@
 const output = document.querySelector(".output");
 const number = document.querySelectorAll(".number");
 const clear = document.querySelector(".clear");
+const operator = document.querySelectorAll(".operator"); //znak
+const currentOperationScreen = document.querySelector(
+  ".currentOperationScreen"
+);
+const lastOperationScreen = document.querySelector(".lastOperationScreen");
+
 const addNumber = document.querySelector(".add");
 const subtractNumber = document.querySelector(".subtract");
 const multiplyNumber = document.querySelector(".multiply");
 const divideNumber = document.querySelector(".divide");
 const equal = document.querySelector(".equal");
-let firstNumber = 0;
+//const allOperations = [addNumber, subtractNumber, multiplyNumber, divideNumber];
+let firstOperand = "";
 let currentOperation;
-let lastNumber;
+let lastOperand = "";
 let lastOperation = 0;
-const allOperations = [addNumber, subtractNumber, multiplyNumber, divideNumber];
 
 number.forEach((number) => number.addEventListener("click", handleNumberClick));
 
 function handleNumberClick(event) {
-  const numberClicked = event.target.value;
-  output.textContent += numberClicked;
-  console.log({ firstNumber, currentOperation });
-  if (firstNumber && currentOperation) {
-    console.log({ lastNumber, numberClicked });
-    lastNumber = lastNumber
-      ? parseInt(`${lastNumber}${numberClicked}`)
-      : parseInt(numberClicked);
-  } else {
-    firstNumber = parseInt(`${firstNumber}${numberClicked}`);
-  }
-  console.log({ firstNumber });
-  console.log({ lastNumber });
+  firstOperand += event.target.value;
+  console.log(firstOperand);
+  currentOperationScreen.textContent = firstOperand;
 }
 
-allOperations.forEach((number) =>
-  number.addEventListener("click", handleOperationClick)
-);
+// allOperations.forEach((number) =>
+//   number.addEventListener("click", handleOperationClick)
+// );
 
 function handleOperationClick(event) {
   if (currentOperation) {
