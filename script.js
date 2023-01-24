@@ -1,55 +1,84 @@
 const output = document.querySelector(".output");
 const number = document.querySelectorAll(".number");
-const clear = document.querySelector(".clear");
+const clearButton = document.querySelector(".clear");
 const operator = document.querySelectorAll(".operator"); //znak
 const currentOperationScreen = document.querySelector(
   ".currentOperationScreen"
 );
 const lastOperationScreen = document.querySelector(".lastOperationScreen");
 
-const addNumber = document.querySelector(".add");
-const subtractNumber = document.querySelector(".subtract");
-const multiplyNumber = document.querySelector(".multiply");
-const divideNumber = document.querySelector(".divide");
+
 const equal = document.querySelector(".equal");
-//const allOperations = [addNumber, subtractNumber, multiplyNumber, divideNumber];
+const coma = document.querySelector('.coma');
+const removeNumberButton = document.querySelector('.delete');
+
+
 let firstOperand = "";
-let currentOperation;
-let lastOperand = "";
-let lastOperation = 0;
+let currentOperation = null;
+let secondOperand = "";
+let shouldResetScreen = false;
+
+equal.addEventListener('click', evaluate)
 
 number.forEach((number) => number.addEventListener("click", handleNumberClick));
-
 function handleNumberClick(event) {
-  firstOperand += event.target.value;
-  console.log(firstOperand);
-  currentOperationScreen.textContent = firstOperand;
+  if ((currentOperationScreen.textContent === "0" || shouldResetScreen))
+    resetScreen();
+  currentOperationScreen.textContent += event.target.value;
 }
 
-// allOperations.forEach((number) =>
-//   number.addEventListener("click", handleOperationClick)
-// );
+function resetScreen() {
+  currentOperationScreen.textContent = "";
+  shouldResetScreen = false;
+}
+
+operator.forEach((operator) =>
+  operator.addEventListener("click", handleOperationClick)
+);
 
 function handleOperationClick(event) {
-  if (currentOperation) {
-    firstNumber = operate(firstNumber, currentOperation, lastNumber);
-    lastNumber = undefined;
-    currentOperation = undefined;
-    output.textContent = firstNumber;
-    return;
-  }
+  if (currentOperation !== null) evaluate();
+  firstOperand = currentOperationScreen.textContent;
   currentOperation = event.target.value;
-  output.textContent += currentOperation;
+  lastOperationScreen.textContent = `${firstOperand} ${event.target.value}`;
+  shouldResetScreen = true;
 }
 
-function clearAll() {
-  currentOperation = 0;
-  lastOperation = 0;
-  result = 0;
-  output.textContent = "";
+function evaluate() {
+  if (currentOperation === null || shouldResetScreen) return
+  if (currentOperation === '/' && currentOperationScreen.textContent === '0') {
+    alert("You can't divide by 0!")
+    return
+  }
+  secondOperand = currentOperationScreen.textContent;
+  currentOperationScreen.textContent = roundResult(operate(
+    firstOperand,
+    currentOperation,
+    secondOperand
+  ));
+  lastOperationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
+  currentOperation = null;
 }
 
-clear.addEventListener("click", clearAll);
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000
+}
+
+clearButton.addEventListener('click', clear)
+function clear() {
+let firstOperand = "";
+let currentOperation = null;
+let secondOperand = "";
+let shouldResetScreen = false;
+currentOperationScreen.textContent = '0';
+lastOperationScreen.textContent = '';
+}
+
+removeNumberButton.addEventListener('click', removeNumber)
+function removeNumber() {
+currentOperationScreen.textContent = currentOperationScreen.textContent.slice(0, -1)
+
+}
 
 function add(a, b) {
   return a + b;
@@ -67,14 +96,17 @@ function divide(a, b) {
   return a / b;
 }
 
-function operate(a, operator, c) {
+function operate(a, operator, b) {
+  a = Number(a);
+  b = Number(b);
   if (operator === "+") {
-    return add(a, c);
+    return add(a, b);
   } else if (operator === "-") {
-    return subtract(a, c);
+    return subtract(a, b);
   } else if (operator === "*") {
-    return multiply(a, c);
+    return multiply(a, b);
   } else if (operator === "/") {
-    return divide(a, c);
+    return divide(a, b);
   }
 }
+
