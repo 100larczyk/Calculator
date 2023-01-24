@@ -6,8 +6,6 @@ const currentOperationScreen = document.querySelector(
   ".currentOperationScreen"
 );
 const lastOperationScreen = document.querySelector(".lastOperationScreen");
-
-
 const equal = document.querySelector(".equal");
 const comabutton = document.querySelector('.coma');
 const removeNumberButton = document.querySelector('.delete');
@@ -67,10 +65,10 @@ function roundResult(number) {
 
 clearButton.addEventListener('click', clear)
 function clear() {
-let firstOperand = "";
-let currentOperation = null;
-let secondOperand = "";
-let shouldResetScreen = false;
+firstOperand = "";
+currentOperation = null;
+secondOperand = "";
+shouldResetScreen = false;
 currentOperationScreen.textContent = '0';
 lastOperationScreen.textContent = '';
 }
