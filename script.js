@@ -9,7 +9,7 @@ const lastOperationScreen = document.querySelector(".lastOperationScreen");
 
 
 const equal = document.querySelector(".equal");
-const coma = document.querySelector('.coma');
+const comabutton = document.querySelector('.coma');
 const removeNumberButton = document.querySelector('.delete');
 
 
@@ -17,6 +17,7 @@ let firstOperand = "";
 let currentOperation = null;
 let secondOperand = "";
 let shouldResetScreen = false;
+currentOperationScreen.textContent = "0";
 
 equal.addEventListener('click', evaluate)
 
@@ -77,8 +78,17 @@ lastOperationScreen.textContent = '';
 removeNumberButton.addEventListener('click', removeNumber)
 function removeNumber() {
 currentOperationScreen.textContent = currentOperationScreen.textContent.slice(0, -1)
-
 }
+
+comabutton.addEventListener('click', addComa);
+function addComa () {
+  if (shouldResetScreen) resetScreen()
+  if (currentOperationScreen.textContent === '')
+    currentOperationScreen.textContent = '0'
+  if (currentOperationScreen.textContent.includes('.')) return
+  currentOperationScreen.textContent += '.'
+}
+
 
 function add(a, b) {
   return a + b;
