@@ -1,11 +1,103 @@
 body {
-  background-color: grey;
+  background-color: rgb(218, 207, 218);
+  height: 97vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.calculator {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(255, 245, 245);
+  width: 25rem;
+  height: 35rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 2rem;
 }
 
 .currentOperationScreen,
 .lastOperationScreen {
-  width: 200px;
-  height: 30px;
-  background-color: white;
-  border: 1px solid lightblue;
+  text-align: right;
+  font-size: 2rem;
+  width: 21rem;
+  height: 3rem;
+  background-color: white; 
+  padding-right: 1rem;
+}
+
+.lastOperationScreen {
+  border-bottom: none;
+  border-top: 0.1rem black solid;
+  border-left: 0.1rem black solid;
+  border-right: 0.1rem black solid;
+  border-radius: 1rem 1rem 0 0;
+  margin: 0px;
+}
+
+.currentOperationScreen {
+  border-top: none;
+  border-bottom: 0.1rem black solid;
+  border-left: 0.1rem black solid;
+  border-right: 0.1rem black solid;
+  border-radius: 0 0 1rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.clearAndDelete {
+  width: 21rem;
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.clear, .delete {
+  width: 10rem;
+  height: 3rem;
+  font-size: 1.1rem;
+}
+.clear {
+  background-color: rgb(255, 115, 115);
+}
+.delete {
+  background-color: rgb(122, 122, 255);
+}
+.equal {
+  background-color: rgb(126, 253, 126);
+}
+
+.operatorsAndNumbers{ 
+  display: flex;
+  flex-direction: row-reverse;
+  width: 21rem;
+  justify-content: space-between;
+}
+
+.operators >* {
+  width: 4.5rem;
+  height: 3.75rem;
+  display: block;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.numbers {
+  justify-content: space-between;
+  display: flex;
+flex-wrap: wrap;
+}
+.numbers >* {
+  width: 4.5rem;
+  height: 3.75rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
