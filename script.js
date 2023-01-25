@@ -17,13 +17,15 @@ let secondOperand = "";
 let shouldResetScreen = false;
 currentOperationScreen.textContent = "0";
 
+
 equal.addEventListener('click', evaluate)
 
-number.forEach((number) => number.addEventListener("click", handleNumberClick));
-function handleNumberClick(event) {
+number.forEach((button) => button.addEventListener("click", () => handleNumberClick(button.textContent)));
+
+function handleNumberClick(number) {
   if ((currentOperationScreen.textContent === "0" || shouldResetScreen))
     resetScreen();
-  currentOperationScreen.textContent += event.target.value;
+  currentOperationScreen.textContent += number;
 }
 
 function resetScreen() {
@@ -31,15 +33,15 @@ function resetScreen() {
   shouldResetScreen = false;
 }
 
-operator.forEach((operator) =>
-  operator.addEventListener("click", handleOperationClick)
+operator.forEach((button) =>
+  button.addEventListener("click", () =>handleOperationClick(button.textContent))
 );
 
-function handleOperationClick(event) {
+function handleOperationClick(operator) {
   if (currentOperation !== null) evaluate();
   firstOperand = currentOperationScreen.textContent;
-  currentOperation = event.target.value;
-  lastOperationScreen.textContent = `${firstOperand} ${event.target.value}`;
+  currentOperation = operator;
+  lastOperationScreen.textContent = `${firstOperand}${currentOperation}`;
   shouldResetScreen = true;
 }
 
