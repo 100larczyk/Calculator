@@ -9,27 +9,22 @@
   </head>
   <body>
     <div class="calculator">
-      <label for="lastOperationScreen"
-        >lastOperationScreen
+      <div class="screen">
         <div class="lastOperationScreen"></div>
-      </label>
-      <label for="currentOperationScreen"
-        >currentOperationScreen
         <div class="currentOperationScreen"></div>
-      </label>
-      <div class="operators">
-        <button class="clear">CLEAR</button>
-        <button class="delete">DELETE</button>
-        <button class="equal" value="=">=</button>
+    </div>
+    <div class="clearAndDelete">
+      <button class="clear">CLEAR</button>
+      <button class="delete">DELETE</button>
+    </div>
+    <div class="operatorsAndNumbers">
+    <div class="operators">
+      <button class="operator divide" value="/">/</button>
+      <button class="operator multiply" value="*">*</button>
+      <button class="operator subtract" value="-">-</button>
         <button class="operator add" value="+">+</button>
-        <button class="operator subtract" value="-">-</button>
-        <button class="operator multiply" value="*">*</button>
-        <button class="operator divide" value="/">/</button>
-        <button class="coma">,</button>
       </div>
-      
       <div class="numbers">
-        <button class="number" value="0">0</button>
         <button class="number" value="1">1</button>
         <button class="number" value="2">2</button>
         <button class="number" value="3">3</button>
@@ -39,8 +34,12 @@
         <button class="number" value="7">7</button>
         <button class="number" value="8">8</button>
         <button class="number" value="9">9</button>
+        <button class="coma">,</button>
+        <button class="number" value="0">0</button>
+        <button class="equal" value="=">=</button>
       </div>
     </div>
+  </div>
     <script src="/script.js"></script>
   </body>
 </html>
